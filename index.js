@@ -16,16 +16,21 @@ app.listen(5000, () => {
 });
 
 app.post('/otptokens/deliverables', function (req, res) {
-    let data = JSON.parse(req.body)
+    let data
+    if(typeof req.body === 'object'){
+      data=req.body
+    }else{
+      data = JSON.parse(req.body)
+    }
     switch (data.status) {
         case 202:
-            res.status(202).send({
+            res.status(202).json({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "efefdca0-3f6e-40cb-b6b7-ff5c76aa1f29"
             })
             break;
         case 400:
-            res.status(400).send({
+            res.status(400).json({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -41,7 +46,7 @@ app.post('/otptokens/deliverables', function (req, res) {
             })
             break;
         case 401:
-            res.status(401).send({
+            res.status(401).json({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -57,7 +62,7 @@ app.post('/otptokens/deliverables', function (req, res) {
             })
             break;
         case 403:
-            res.status(403).send({
+            res.status(403).json({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -73,7 +78,7 @@ app.post('/otptokens/deliverables', function (req, res) {
             })
             break;
         case 404:
-            res.status(404).send({
+            res.status(404).json({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -89,7 +94,7 @@ app.post('/otptokens/deliverables', function (req, res) {
             })
             break;
         case 405:
-            res.status(405).send({
+            res.status(405).json({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -105,7 +110,7 @@ app.post('/otptokens/deliverables', function (req, res) {
             })
             break;
         case 406:
-            res.status(406).send({
+            res.status(406).json({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -121,7 +126,7 @@ app.post('/otptokens/deliverables', function (req, res) {
             })
             break;
         case 422:
-            res.status(422).send({
+            res.status(422).json({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -137,7 +142,7 @@ app.post('/otptokens/deliverables', function (req, res) {
             })
             break;
         case 429:
-            res.status(429).send({
+            res.status(429).json({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -153,7 +158,7 @@ app.post('/otptokens/deliverables', function (req, res) {
             })
             break;
         case 451:
-            res.status(451).send({
+            res.status(451).json({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -169,7 +174,7 @@ app.post('/otptokens/deliverables', function (req, res) {
             })
             break;
         default:
-            res.status(503).send({
+            res.status(503).json({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
