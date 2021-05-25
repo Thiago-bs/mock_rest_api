@@ -7,14 +7,17 @@ app.use(cors());
 app.options('*', cors());
 
 // create application/json parser
-var jsonParser = bodyParser.json()
+app.use(bodyParser.text());
+app.use(bodyParser.json());
+
 
 app.listen(5000, () => {
     console.log("Server running on port 3000");
 });
 
-app.post('/otptokens/deliverables', jsonParser, function (req, res) {
-    switch (req.body.status) {
+app.post('/otptokens/deliverables', function (req, res) {
+    let data = JSON.parse(req.body)
+    switch (data.status) {
         case 202:
             res.status(202).send({
                 "apiVersion": "1;2021-03-01",
@@ -22,7 +25,7 @@ app.post('/otptokens/deliverables', jsonParser, function (req, res) {
             })
             break;
         case 400:
-            res.status(202).send({
+            res.status(400).send({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -38,7 +41,7 @@ app.post('/otptokens/deliverables', jsonParser, function (req, res) {
             })
             break;
         case 401:
-            res.status(202).send({
+            res.status(401).send({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -54,7 +57,7 @@ app.post('/otptokens/deliverables', jsonParser, function (req, res) {
             })
             break;
         case 403:
-            res.status(202).send({
+            res.status(403).send({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -70,7 +73,7 @@ app.post('/otptokens/deliverables', jsonParser, function (req, res) {
             })
             break;
         case 404:
-            res.status(202).send({
+            res.status(404).send({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -86,7 +89,7 @@ app.post('/otptokens/deliverables', jsonParser, function (req, res) {
             })
             break;
         case 405:
-            res.status(202).send({
+            res.status(405).send({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -102,7 +105,7 @@ app.post('/otptokens/deliverables', jsonParser, function (req, res) {
             })
             break;
         case 406:
-            res.status(202).send({
+            res.status(406).send({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -118,7 +121,7 @@ app.post('/otptokens/deliverables', jsonParser, function (req, res) {
             })
             break;
         case 422:
-            res.status(202).send({
+            res.status(422).send({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -134,7 +137,7 @@ app.post('/otptokens/deliverables', jsonParser, function (req, res) {
             })
             break;
         case 429:
-            res.status(202).send({
+            res.status(429).send({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -150,7 +153,7 @@ app.post('/otptokens/deliverables', jsonParser, function (req, res) {
             })
             break;
         case 451:
-            res.status(202).send({
+            res.status(451).send({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
@@ -166,7 +169,7 @@ app.post('/otptokens/deliverables', jsonParser, function (req, res) {
             })
             break;
         default:
-            res.status(202).send({
+            res.status(503).send({
                 "apiVersion": "1;2021-03-01",
                 "transactionId": "1ca74fe9-aa41-424e-87cb-2d79b27c3264",
                 "error": {
